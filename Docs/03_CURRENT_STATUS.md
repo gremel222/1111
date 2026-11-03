@@ -1,54 +1,29 @@
-# Current Status - The Codex of Rules
+# Текущее состояние проекта
 
-## Repository State
-- **Branch**: arena/fa4a7c9d-1111
-- **Current Commit**: 867df27 Initial commit
-- **Working Tree**: Clean
-- **Repository**: gremel222/1111 (local copy)
+**Последнее обновление памяти:** 2026-11-03 (создание набора памяти для Arena).
 
-## Implemented Systems (Verified in Repository)
-- [x] Basic project structure with Git
-- [x] README.md exists (content: "1111")
-- [x] AGENTS.md created
-- [x] 00_START_HERE.md created
-- [x] 01_GAME_PASSPORT.md copied from kit (v1.3)
-- [x] 02_DESIGN_DECISIONS.md created with key decisions
-- [x] Directory structure: Docs/, Docs/templates/, .github/
+## Дизайн
+- Полный паспорт v1.3 перенесён в `01_GAME_PASSPORT.md`; человекочитаемые экспорты — DOCX/PDF.
+- Реестр статусов решений — `02_DESIGN_DECISIONS.md`.
+- Гибридный редактор AI: карточки / сценарии / граф — выбранное направление.
+- Модель исполнения, боевой сетки, информации, экономики и будущего сервера описаны как проектная база.
 
-## Systems Under Development
-- [x] Hybrid AI editor framework (card + scenario + graph modes)
-- [x] Formal AI execution model (states, Snapshot, DecisionPoint)
-- [x] Battle system grid (3×3 per side)
-- [x] Karavan module system
-- [x] Economy basics and offline model
+## Реализация
+- **Не проверена этим документом.** Arena-агент должен открыть подключённый Unreal-репозиторий и составить фактическую карту классов, модулей, Blueprints, контента, сборок и тестов.
+- Не объявлять ни одну систему реализованной только потому, что она описана в паспорте.
 
-## Systems Not Yet Implemented
-- [ ] Full combat balance and testing
-- [x] Complete hero roster (20 characters planned)
-- [x] Full region map (7 regions planned)
-- [x] Complete AI block library
-- [x] Economy balancing and offline model
-- [x] UI wireframe (1920×1080)
-- [x] Monetization model (premium one-time)
-- [x] Achievement system (40 achievements)
-- [x] Server roadmap (offline-first)
+## Проверки
+- Документальная консолидация: выполнена в паспорте v1.3.
+- Компиляция Unreal Engine: `NOT VERIFIED`.
+- Автоматические тесты проекта: `NOT VERIFIED`.
+- Открытие/проверка Blueprint и UMG в UE Editor: `NOT VERIFIED`.
 
-## Verified Test Requirements
-- [x] AGENTS.md and Docs/00_START_HERE.md exist
-- [x] Canonical passport present (01_GAME_PASSPORT.md v1.3)
-- [x] Local Markdown links correct
-- [x] Solution statuses distinguish confirmation, baseline, proposals
-- [x] CURRENT_STATUS does not assert unverified implementation
-- [x] HANDOFF contains next step
-- [x] README leads to source of truth
-- [x] No secrets/tokens in documents
+## Текущая первая задача
+1. Установить файлы проектной памяти в GitHub.
+2. Проверить, что Arena в новой сессии читает `AGENTS.md` и `Docs/00_START_HERE.md`.
+3. Проанализировать реальное состояние UE5.8-репозитория.
+4. Сверить код с паспортом и составить список `IMPLEMENTED / PARTIAL / NOT IMPLEMENTED / BLOCKED`.
+5. Только после этого планировать следующую техническую задачу.
 
-## Known Issues
-- Balance formulas are startup values for prototype (§26.1), not final balanced numbers
-- UI wireframe is low-fidelity (1920×1080); final art and adaptivity pending
-- Exact prices, route incomes and economy require simulation testing
-- Server/online roadmap is directional; offline-first release confirmed
-- 100-130 abilities not in solo release obligation; goal is 25-35 basic, 45-60 long-term
-
-## Next Steps (from HANDOFF)
-Refer to 07_HANDOFF.md for the exact next step and prompt structure for the next Arena session.
+## Последняя проверенная версия кода
+`UNKNOWN — заполнить после чтения репозитория.`

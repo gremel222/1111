@@ -1,71 +1,32 @@
-# Handoff - The Codex of Rules
+# HANDOFF — передача следующей сессии
 
-## Current Session State
-- **Session**: Arena Agent Mode, branch arena/fa4a7c9d-1111
-- **Last Updated**: 2026-11-03
-- **Passport Version**: v1.3
-- **PR URL**: Will be created when this session's changes are pushed
+**Дата:** 2026-11-03  
+**Состояние:** пакет памяти подготовлен локально; установка в пользовательский GitHub-репозиторий ещё не подтверждена.  
+**Коммит/ветка:** неизвестны до работы Arena Agent.
 
-## What Was Done in This Session
-- Created project memory structure per Arena protocol
-- Established AGENTS.md with rules and directives
-- Created 00_START_HERE.md with reading order and truth sources
-- Copied canonical passport 01_GAME_PASSPORT.md v1.3
-- Created 02_DESIGN_DECISIONS.md with key decisions from design discussion
-- Created 03_CURRENT_STATUS.md with verified repository state
-- Created 04_OPEN_QUESTIONS.md with all unresolved questions
-- Created 05_ROADMAP.md with phased development plan
-- Created 06_CHANGELOG.md with version history
-- Created directory structure: Docs/, Docs/templates/, .github/
-- Set up Unreal Engine 5.8 context and GitHub/Arena requirements
+## Контекст
+Проект «Свод Правил» — стратегическая RPG для Unreal Engine 5.8 с гибридным визуальным редактором программируемого поведения героев, отрядом из четырёх героев, караваном, регионами и offline-first прогрессом.
 
-## What Was Verified
-- AGENTS.md and Docs/00_START_HERE.md exist in target branch
-- Canonical passport present and not abridged (01_GAME_PASSPORT.md v1.3)
-- All links between local Markdown files correct
-- Solution statuses distinguish direct confirmation, project baseline and proposals
-- CURRENT_STATUS does not assert unverified implementation
-- HANDOFF contains next step
-- README leads to source of truth
-- No secrets/tokens in documents
+## Последняя дизайн-база
+`Docs/01_GAME_PASSPORT.md` (паспорт v1.3). Статусы решений в `Docs/02_DESIGN_DECISIONS.md`.
 
-## Known State
-- Balance formulas are startup values for prototype (§26.1), not final balanced numbers
-- UI wireframe is low-fidelity (1920×1080); final art and adaptivity pending
-- Exact prices, route incomes and economy require simulation testing
-- Server/online roadmap is directional; offline-first release confirmed
-- 100-130 abilities not in solo release obligation; goal is 25-35 basic, 45-60 long-term
+## Что подготовлено в этом наборе
+- `AGENTS.md` и Arena-протоколы сессии.
+- Канонический Markdown-паспорт и человекочитаемые DOCX/PDF экспорты.
+- Реестр решений, текущий статус, открытые вопросы, roadmap и changelog.
 
-## Exact Next Step for Next Session
-The next Arena session must:
-1. Read [AGENTS.md] → 00_START_HERE → 02_DESIGN_DECISIONS → 03_CURRENT_STATUS → 07_HANDOFF → profiling sheets → check real code → plan → implement → test → update docs → update HANDOFF → commit/push/PR
-2. Create a new branch from current HEAD (not main)
-3. Include all memory files needed by the next session in the PR
-4. Show diff, file list, test results and PR URL before merging
-5. Max one PR per session from this branch
+## Что НЕ проверено
+- Реальная структура GitHub-репозитория пользователя.
+- Реализация C++/Blueprint/UMG.
+- Наличие Unreal Engine 5.8 и toolchain в Arena sandbox.
+- Компиляция, автоматические тесты, запуск редактора.
 
-## Files Modified/Created in This Session
-- [AGENTS.md] - Rules and directives
-- [Docs/00_START_HERE.md] - Reading order and truth sources
-- [Docs/01_GAME_PASSPORT.md] - Canonical passport v1.3
-- [Docs/02_DESIGN_DECISIONS.md] - Key design decisions
-- [Docs/03_CURRENT_STATUS.md] - Verified repository state
-- [Docs/04_OPEN_QUESTIONS.md] - All unresolved questions
-- [Docs/05_ROADMAP.md] - Phased development plan
-- [Docs/06_CHANGELOG.md] - Version history
-- [Docs/07_HANDOFF.md] - This file, short transfer to next session
-- [directory] Docs/templates/
-- [directory] .github/
+## Следующие действия
+1. В Arena Agent Mode включить GitHub, выбрать правильный repository и ветку.
+2. Приложить `01_GAME_PASSPORT.md` или перенести весь набор в репозиторий.
+3. Запустить `ARENA_BOOTSTRAP_PROMPT.md`.
+4. Проверить созданную ветку и единственный PR в Diff/Checks.
+5. После merge открыть новую Arena-сессию от обновлённой ветки и запустить `ARENA_NEW_SESSION_PROMPT.md`.
 
-## Prompt for New Arena Session
-```
-You are working in Arena Agent Mode with connected GitHub repository for project THE CODEX OF RULES / «Свод Правил».
-
-Copy the text below into a new Arena Agent Mode session. Apply the file 01_GAME_PASSPORT.md from this kit if it is not already in the repository.
-
---- PROMPT START ---
-
-[Full prompt text from the original task would be here]
-
---- PROMPT END ---
-```
+## Главное ограничение
+Не утверждать, что память уже установлена в GitHub, пока не получены подтверждённые commit SHA и PR URL.

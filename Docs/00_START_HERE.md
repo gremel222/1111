@@ -1,61 +1,22 @@
-# How to Read This Project
+# START HERE — память проекта
 
-## Sources of Truth (in order)
+## Канонический порядок чтения
+1. `AGENTS.md` — обязательные инструкции для агента.
+2. `Docs/01_GAME_PASSPORT.md` — основной паспорт игры, текущая версия v1.3.
+3. `Docs/02_DESIGN_DECISIONS.md` — краткий реестр решений и их статусов.
+4. `Docs/03_CURRENT_STATUS.md` — текущее состояние реальной реализации.
+5. `Docs/07_HANDOFF.md` — последняя передача между сессиями.
+6. `Docs/04_OPEN_QUESTIONS.md` — нерешённые вопросы.
+7. Профильная системная спецификация, связанная с задачей.
 
-1. **01_GAME_PASSPORT.md** - Full game design passport, v1.3. Canonical version. Do not override without user confirmation.
+## Источник истины
+- `01_GAME_PASSPORT.md` — канонический редактируемый текст дизайна в Git.
+- `01_GAME_PASSPORT_v1.3.docx` и `.pdf` — удобные снимки одной версии. Не редактировать их отдельно от Markdown.
+- `02_DESIGN_DECISIONS.md` — краткий индекс статусов; при расхождении сверять с полным паспортом и историей ADR.
+- Код показывает фактическую реализацию; паспорт показывает требуемый дизайн. Не смешивать «запланировано» и «реализовано».
 
-2. **02_DESIGN_DECISIONS.md** - Architecture Decision Records. Log of decisions with status, context, and consequences.
+## Состояние на момент импорта
+В репозиторий переносится дизайн-пакет v1.3. Статус исходного Unreal-проекта, компиляции и существующих Blueprint assets должен быть проверен агентом в первом подключённом Arena-сеансе. До такой проверки нельзя писать «реализовано».
 
-3. **03_CURRENT_STATUS** - Only factual implementation state verified in the repository. No unverified claims.
-
-4. **04_OPEN_QUESTIONS** - Unresolved questions. These must be resolved before proceeding with related work.
-
-5. **05_ROADMAP.md** - Tasks and milestones. Clear progression from MVP to full release.
-
-6. **06_CHANGELOG.md** - Significant changes only. Version entries with dates.
-
-7. **07_HANDOFF.md** - Short transfer to next session. What was done, what was verified, known issues, exact next step.
-
-## Reading Order for New Sessions
-
-```
-[AGENTS.md] → 00_START_HERE → 02_DESIGN_DECISIONS → 03_CURRENT_STATUS → 07_HANDOFF → 
-profiling sheets → check real code → plan → implement → test → update docs → update HANDOFF → 
-commit/push/PR
-```
-
-## Key Directives
-
-- **[AGENTS.md]** contains rules, not the full passport.
-- **00_START_HERE** indicates reading order and sources of truth.
-- **01_GAME_PASSPORT** is the full design.
-- **02_DESIGN_DECISIONS** is the ADR log.
-- **03_CURRENT_STATUS** shows only verified implementation, not promises.
-- **04_OPEN_QUESTIONS** lists unresolved items.
-- **05_ROADMAP** has tasks and control points.
-- **06_CHANGELOG** tracks significant changes.
-- **07_HANDOFF** passes to the next session.
-
-## Unreal Engine Specific
-- Verify UE 5.8 availability in the sandbox.
-- Visual Studio/Build Tools and Windows toolchain availability must be checked.
-- Do not claim Blueprints/UMG are open or compiled if the environment does not allow it.
-- Do not create fictional .uasset files.
-
-## GitHub/Arena Specific
-- Create working branch `memory/project-context-v1` (or safe unique name if taken).
-- Do not commit directly to `main`.
-- This Arena session must create no more than one PR.
-- Do not merge PR yourself.
-- Include all memory files needed by the next session in the PR.
-
-## Test Requirements (must pass before proceeding)
-
-1. `AGENTS.md` and `Docs/00_START_HERE.md` exist in the target branch.
-2. Canonical passport is present and not abridged.
-3. All links between local Markdown files are correct.
-4. Solution statuses distinguish direct confirmation, project baseline, and proposals.
-5. `CURRENT_STATUS` does not assert unverified implementation.
-6. `HANDOFF` contains the next step.
-7. `README` leads to the source of truth.
-8. No secrets/tokens in documents.
+## Правило статусов
+`CONFIRMED_BY_USER`, `PROJECT_BASELINE`, `PROPOSED`, `OPEN`, `SUPERSEDED`, `PROTOTYPE_PARAMETER`.
