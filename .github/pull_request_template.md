@@ -1,29 +1,40 @@
-# Pull Request Template - The Codex of Rules
+## Summary
 
-## Description
-Describe what this PR changes and why. Reference the issue or feature if applicable.
+<!-- Что сделано и зачем? -->
 
-## Checklist (Required - do not remove any of the following items)
+## Связанные задачи / ADR
+- Issue:
+- ADR:
 
-- [x] `AGENTS.md` exists in the target branch
-- [x] `Docs/00_START_HERE.md` exists in the target branch
-- [x] Canonical passport `Docs/01_GAME_PASSPORT.md` present and not abridged
-- [x] All local Markdown links are correct
-- [x] Solution statuses distinguish direct confirmation, project baseline, and proposals
-- [x] `CURRENT_STATUS` does not assert unverified implementation
-- [x] `HANDOFF` contains the next step
-- [x] `README` leads to the source of truth
-- [x] No secrets/tokens in documents
+## Изменённые системы
+- [ ] AI / Rule Runtime
+- [ ] Combat
+- [ ] Hero / Progression
+- [ ] Caravan / Economy
+- [ ] World / Story
+- [ ] UI / UMG
+- [ ] Save / Migration
+- [ ] Documentation only
 
-## Changes
-- List the files modified or created in this PR
-- For each file, indicate if it's new or modified and briefly describe the change
+## Проверки
+| Проверка | Статус | Команда / комментарий |
+|---|---|---|
+| Сборка | NOT RUN | |
+| Автотесты | NOT RUN | |
+| Ручная проверка UE Editor | NOT RUN | |
+| Проверка миграций/сохранений | NOT RUN | |
+| Проверка документов и решений | NOT RUN | |
 
-## Handoff Notes
-- Summary of what this PR enables for the next session
-- Any open questions that should be carried forward
-- Current known state and risks
+## Документация и handoff
+- [ ] Паспорт/системная спецификация обновлены
+- [ ] DESIGN_DECISIONS обновлён (если нужно)
+- [ ] CURRENT_STATUS обновлён
+- [ ] OPEN_QUESTIONS обновлён (если нужно)
+- [ ] CHANGELOG обновлён
+- [ ] HANDOFF обновлён
 
-## Approval Notes
-- Checklist items above must be approved before merge
-- No merging by the session creator; follow repository protocol
+## Риски и ограничения
+
+## Не сделано / NOT RUN
+
+## Ручные шаги пользователя (если нужны)

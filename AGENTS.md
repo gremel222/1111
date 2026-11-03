@@ -1,99 +1,133 @@
-# Arena Agent Memory Protocol
+# Инструкции AI-агентам — THE CODEX OF RULES
 
-## Project Context
-- **Project**: The Codex of Rules / «Свод Правил»
-- **Branch**: arena/fa4a7c9d-1111
-- **Current Session**: active
-- **Baseline Commit**: 867df27 Initial commit
-- **Passport Version**: v1.3
+## 0. Приоритет источников истины
 
-## Memory Structure
-The following documents form the project's persistent memory. Each serves a specific purpose:
+1. Прямые инструкции владельца проекта в текущем запросе.
+2. Утверждённые решения в `Docs/02_DESIGN_DECISIONS.md`.
+3. Канонический паспорт `Docs/01_GAME_PASSPORT.md`.
+4. Системные спецификации и технические документы `Docs/`.
+5. `Docs/03_CURRENT_STATUS.md` и `Docs/07_HANDOFF.md` описывают состояние реализации, но не могут переопределять утверждённый дизайн.
 
-### 00_START_HERE.md
-- Indicates reading order and sources of truth
-- Points to canonical documents
-- Entry point for new sessions
+Если документы противоречат друг другу — не выбирай молча. Зафиксируй конфликт, укажи затронутые файлы и предложи согласованное исправление.
 
-### 01_GAME_PASSPORT.md
-- Full design specification
-- Consolidated decisions from all sessions
-- Do not modify without user confirmation
+## 1. Обязательное чтение в начале каждой сессии
 
-### 02_DESIGN_DECISIONS.md
-- ADR (Architecture Decision Records) log
-- Each decision has: status, date, context, consequence
-- Distinguishes: CONFIRMED_BY_USER, PROJECT_BASELINE, PROPOSED, OPEN, PROTOTYPE_PARAMETER, SUPERSEDED
+Прочитать:
+- `README.md`
+- `AGENTS.md`
+- `Docs/00_START_HERE.md`
+- `Docs/02_DESIGN_DECISIONS.md`
+- `Docs/03_CURRENT_STATUS.md`
+- `Docs/07_HANDOFF.md`
+- профильные разделы `Docs/01_GAME_PASSPORT.md` и связанные спецификации.
 
-### 03_CURRENT_STATUS.md
-- Only factual implementation state verified in repository
-- No unverified claims about progress
-- Tracks: what's done, what's tested, open problems
+В Arena Agent Mode не полагайся на память старого чата. Если платформа не загрузила эти файлы автоматически, открой их явно. В начале работы кратко сообщи: текущая ветка/коммит, что реализовано по документам, что реально проверено в репозитории и какие файлы ещё нужно прочитать.
 
-### 04_OPEN_QUESTIONS.md
-- All unresolved questions from design
-- Clearly marked as OPEN or PROTOTYPE_PARAMETER
-- Not to be answered without user confirmation
+## 2. Статусы решений
 
-### 05_ROADMAP.md
-- Tasks and milestones
-- Clear progression from MVP to full release
-- Dependencies between systems
+Используй только такие статусы:
+- `CONFIRMED_BY_USER` — пользователь прямо выбрал или явно подтвердил.
+- `PROJECT_BASELINE` — проектное решение, принятое как рабочая основа для непротиворечивости; не выдавать за прямую цитату/выбор пользователя.
+- `PROPOSED` — предложение агента, ещё не утверждённое пользователем.
+- `OPEN` — решение не принято или требует данных/тестов.
+- `SUPERSEDED` — прежнее решение заменено; запись сохраняется в истории.
+- `PROTOTYPE_PARAMETER` — стартовое значение, подлежащее тестированию.
 
-### 06_CHANGELOG.md
-- Significant changes only
-- Version entries with dates
-- What changed and why
+Никогда не повышай `PROPOSED`, `OPEN` или `PROTOTYPE_PARAMETER` до `CONFIRMED_BY_USER` без явного подтверждения пользователя.
 
-### 07_HANDOFF.md
-- Short transfer to next session
-- What was done, what was verified, known issues
-- Exact next step prompt
+## 3. Неизменные проектные принципы
 
-### Docs/ARENA_SETUP.md
-- Unreal Engine 5.8 availability check
-- Build tools status
-- Do not claim editor access if unavailable
+- Игра: одиночная стратегическая RPG с программируемым поведением героев, караваном и исследованием мира.
+- Целевая версия движка: Unreal Engine 5.8.
+- В бою действует отряд из четырёх героев; это часть исходной пользовательской концепции.
+- Редактор AI гибридный: карточки правил, сценарии и граф — три представления одной модели программы.
+- Герои автономны; игрок не нажимает каждую атаку вручную.
+- Программы объяснимы: важные решения должны иметь причины и диагностические записи.
+- Разделяй глобальные знания/библиотеку блоков, совместимость героя и вычислительную ёмкость его программы.
+- Не допускай телепатии: AI использует только известную, свежую и переданную информацию.
+- Офлайн-маршруты используют отдельную упрощённую экономическую модель, а не притворяются полноценным боевым симулятором.
+- Маршрутные службы базовой версии — NPC-службы; герои ростера не отправляются в них как боевые участники.
+- Одиночная кампания должна работать офлайн. Будущий сервер — отдельная фаза, не обязательный сервер для запуска одиночной игры.
+- Не добавляй PvP/MMO без явного нового решения пользователя.
 
-### Docs/ARENA_NEW_SESSION_PROMPT.md
-- Prompt text for new Arena sessions
-- Contains the standard prompt structure
+## 4. Правила Unreal Engine
 
-### Docs/ARENA_END_OF_TASK_PROMPT.md
-- End-of-task summary prompt
-- Repository state, PR URL, test results, open items
+- Сначала изучай реальные классы, модули, плагины, Build.cs, Config и текущую архитектуру. Не создавай дубликаты.
+- Отделяй SimulationCore от UMG, Actor Tick, анимации, физики и визуальных эффектов.
+- Данные контента должны быть data-driven там, где это оправдано.
+- Все сохраняемые сущности и блоки должны иметь стабильные ID и версии схем.
+- Не выдумывай существующие Blueprint assets или результаты компиляции.
+- Перед работой проверь, доступна ли в Arena sandbox среда Unreal Engine 5.8, Windows toolchain и редактор. Если UE Editor/Build Tools недоступны, честно пометь соответствующие проверки как `NOT RUN`; не утверждай, что `.uasset` создан/проверен.
+- Не создавай вручную бинарные `.uasset`-файлы и не обещай редактирование графических Blueprint без подходящего редактора.
+- При каждом изменении оценивай влияние на сохранения, совместимость программ, повтор боя и детерминизм.
 
-### Doc/templates/ADR_TEMPLATE.md
-- Architecture Decision Record template
-- Fields: ID, Title, Status, Context, Decision, Consequences, Date, Decision Maker
+## 5. Правила проектирования AI
 
-### .github/pull_request_template.md
-- PR template for this project
-- Includes checklist of memory files
-- Ensures all required documents are included
+- Snapshot — снимок данных одного такта; проверки читают его, не запускают произвольные трассировки на каждый блок.
+- Оценка правил — атомарная процедура DecisionPoint, а не длительное состояние героя.
+- Правила проверяются сверху вниз; при одинаковом приоритете раньше расположенное правило побеждает.
+- Условие возвращает `TRUE`, `FALSE` или `UNKNOWN`; обычное условие трактует `UNKNOWN` как `FALSE`.
+- Если действие недоступно, правило пропускается с конкретным кодом причины; не вводи скрытое ожидание/повтор.
+- Один герой не выполняет два несовместимых основных действия одновременно.
+- Последовательности конечны: имеют критерии успеха/ошибки, тайм-аут и лимит циклов.
+- Все прерывания и возобновления должны следовать спецификации, а не импровизироваться в отдельных способностях.
+- Приказы игрока — временные оверлеи, не перезаписывающие программу.
 
-## Classification Rules
-- **CONFIRMED_BY_USER**: Direct user choice/confirmation
-- **PROJECT_BASELINE**: Agreed project base, not direct quote
-- **PROPOSED**: AI suggestion
-- **OPEN**: Unresolved
-- **PROTOTYPE_PARAMETER**: Startup numbers needing tests
-- **SUPERSEDED**: Overridden old decision
+## 6. Протокол выполнения каждой задачи
 
-## Key Directives
-- [AGENTS.md] contains rules, not full passport
-- 00_START_HERE indicates reading order and truth sources
-- 01_GAME_PASSPORT is the full design
-- 02_DESIGN_DECISIONS is ADR log
-- 03_CURRENT_STATUS shows only verified implementation
-- 04_OPEN_QUESTIONS lists unresolved items
-- 05_ROADMAP has tasks and milestones
-- 06_CHANGELOG tracks significant changes
-- 07_HANDOFF passes to next session
+### До изменений
+1. Прочитать обязательные документы.
+2. Проверить ветку, HEAD, рабочее дерево и фактическое состояние кода.
+3. Найти существующую систему и тесты; не делать вывод по одному имени файла.
+4. Составить короткий план и перечислить затрагиваемые системы.
+5. Проверить конфликт с `CONFIRMED_BY_USER` и `PROJECT_BASELINE`.
 
-## Handoff Protocol for Next Session
-1. Read [AGENTS.md] → 00_START_HERE → 02_DESIGN_DECISIONS → 03_CURRENT_STATUS → 07_HANDOFF → spec sheets → check real code → plan → implement → test → update docs → update HANDOFF → commit/push/PR
-2. New session creator: create branch from current HEAD, not main
-3. Max one PR per session from this branch
-4. PR must include all memory files needed by next session
-5. Do not merge PR yourself
+### Во время работы
+1. Работать небольшими проверяемыми шагами.
+2. Не объединять несвязанные задачи в один PR.
+3. Не менять утверждённый дизайн молча.
+4. Новые идеи записывать как `PROPOSED` или `OPEN`.
+5. Не добавлять зависимости/плагины без необходимости и описания последствий.
+
+### После изменений
+1. Выполнить доступные сборки, тесты, проверки данных и статический анализ.
+2. Указать точные команды и фактические результаты.
+3. Обновить все затронутые документы: паспорт/системную спецификацию, `02_DESIGN_DECISIONS.md`, `03_CURRENT_STATUS.md`, `04_OPEN_QUESTIONS.md`, `06_CHANGELOG.md`, `07_HANDOFF.md`.
+4. Обновить инструкции только если реально изменился рабочий процесс.
+5. Создать осмысленный commit в рабочей ветке и подготовить один PR на текущую Arena-сессию, если GitHub-интеграция позволяет.
+6. Не сливать PR в основную ветку и не закрывать его самостоятельно без указания пользователя.
+7. Не объявлять задачу готовой, если проверки не выполнены; явно перечислять `PASS`, `FAIL`, `NOT RUN`.
+
+## 7. Передача следующей сессии
+
+`Docs/07_HANDOFF.md` — краткий текущий снимок состояния, а не полная история. Перезаписывай его после каждой законченной задачи и сохраняй:
+- дату и commit/branch;
+- цель последней задачи;
+- что изменено (пути файлов);
+- что проверено и как;
+- что не удалось проверить и почему;
+- известные ошибки/риски;
+- открытые решения;
+- точную следующую рекомендуемую задачу.
+
+Полную историю решений не удаляй — она хранится в ADR/журнале.
+
+## 8. GitHub / Arena Agent Mode
+
+- Один Arena chat поддерживает один PR; группируй работу в один логический PR.
+- Перед merge убедись, что все нужные изменения и обновления памяти уже отправлены в PR.
+- После merge/close текущая Arena-сессия не сможет продолжать push в тот же PR; для следующей работы начни новую сессию от обновлённой ветки/репозитория.
+- Не запускай две сессии, одновременно меняющие одну ветку.
+- Всегда показывай summary diff и список файлов.
+- Не заявляй о push/commit/PR, пока не увидел подтверждение платформы.
+
+## 9. Формат итогового отчёта
+
+В конце каждой задачи сообщай:
+1. Результат.
+2. Изменённые файлы.
+3. Тесты: команда → PASS/FAIL/NOT RUN.
+4. Влияние на утверждённые решения.
+5. Обновлённые документы и HANDOFF.
+6. Commit/PR URL, если создан; иначе точная причина.
+7. Следующий шаг.
