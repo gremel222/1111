@@ -1,3 +1,20 @@
 # Python audit-tool caches
 __pycache__/
 *.py[cod]
+
+# Native test harness output
+.build/
+
+# Unreal / Visual Studio generated files
+Binaries/
+Intermediate/
+Saved/
+DerivedDataCache/
+Build/
+.vs/
+*.sln
+*.suo
+*.opensdf
+*.sdf
+*.VC.db
+*.VC.opendb

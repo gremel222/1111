@@ -1,0 +1,13 @@
+{
+  "FileVersion": 3,
+  "EngineAssociation": "5.8",
+  "Category": "Games",
+  "Description": "The Codex of Rules — programmable-hero tactical RPG prototype",
+  "Modules": [
+    {
+      "Name": "CodexOfRules",
+      "Type": "Runtime",
+      "LoadingPhase": "Default"
+    }
+  ]
+}
